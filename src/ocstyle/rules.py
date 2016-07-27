@@ -56,7 +56,6 @@ def setupLines(content, maxLineLength):
   return errors
 
 
-
 class TranslateWithPosition(Translate):
   """Like Translate, but also passes position."""
 
@@ -73,6 +72,7 @@ class TranslateWithPosition(Translate):
       translated = self.function(result.value, result.end)
     else:
       translated = self.function(result.value)
+
     return match(result.end, translated, result.expected)
 
 
@@ -587,7 +587,7 @@ def shouldBeSemicolonAndNewline(result, pos):
   return errors or None
 
 
-@rule(methodSignature + shouldBeSemicolonAndNewline + codeBlock)
+@rule(methodSignature + codeBlock)
 def method(value):
   """A method."""
   return stringsAndErrors(value)
